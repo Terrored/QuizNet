@@ -38,7 +38,7 @@ namespace QuizNet.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int id=1)
         {
             var student = students.FirstOrDefault(s => s.Id == id);
             return View(student);

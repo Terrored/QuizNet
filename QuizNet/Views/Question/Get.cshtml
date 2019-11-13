@@ -1,0 +1,21 @@
+﻿@model Question
+@{
+    ViewData["Title"] = "Get";
+}
+
+<h1>@Model.Text</h1>
+
+<ul>
+    @for (int i = 0; i < Model.Answers.Length; i++)
+    {
+        if (i == Model.CorrectAnswerIndex)
+        {
+            <li class="list-group-item active">@Model.Answers[i].Text</li>
+        }
+        else
+        {
+            <li class="list-group-item">@Model.Answers[i].Text</li>
+        }
+    }
+</ul>
+

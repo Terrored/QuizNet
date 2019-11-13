@@ -1,0 +1,32 @@
+﻿@model List<Question>
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1>Questions</h1>
+<br/>
+
+@foreach (var question in Model)
+{
+    <h3>@question.Text</h3>
+    <a class="btn btn-primary" 
+       asp-controller="Question" 
+       asp-action="Get" 
+       asp-route-id="@question.Id.ToString()">Details</a>
+
+    <a class="btn btn-danger" 
+       asp-controller="Question" 
+       asp-action="Delete" 
+       asp-route-id="@question.Id.ToString()">Delete</a>
+
+    <ul class="list-group">
+        @foreach (var answer in question.Answers)
+        {
+            <li class="list-group-item">@answer.Text</li>
+        }
+    </ul>
+
+}
+
+
+

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using QuizNet.DataAccess.Models;
 using QuizNet.Models;
 
 namespace QuizNet.Controllers

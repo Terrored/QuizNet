@@ -1,8 +1,6 @@
-﻿using System;
+﻿using QuizNet.DataAccess.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using QuizNet.DataAccess.Models;
 
 namespace QuizNet.DataAccess
 {
@@ -98,12 +96,32 @@ namespace QuizNet.DataAccess
 
         public void Add(Question question)
         {
+            var newQuestionId = _questions.Last().Id + 1;
+            question.Id = newQuestionId;
+
+            var lastAnswerId = _questions.LastOrDefault().
+                Answers.LastOrDefault().Id;
+
+
+            for (int i = 0; i < question.Answers.Length; i++)
+            {
+                question.Answers[i].Id = lastAnswerId + i + 1;
+                question.Answers[i].QuestionId = newQuestionId;
+            }
+
             _questions.Add(question);
         }
 
         public void Update(Question updatedQuestion)
         {
-            throw new NotImplementedException();
+            var questionToEdit = _questions.FirstOrDefault(q => q.Id == updatedQuestion.Id);
+            questionToEdit.Text = updatedQuestion.Text;
+            questionToEdit.CorrectAnswerIndex = updatedQuestion.CorrectAnswerIndex;
+
+            for (int i = 0; i < updatedQuestion.Answers.Length; i++)
+            {
+                questionToEdit.Answers[i].Text = updatedQuestion.Answers[i].Text;
+            }
         }
 
         public void Delete(int questionId)

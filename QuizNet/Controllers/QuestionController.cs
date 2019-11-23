@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuizNet.DataAccess;
 using QuizNet.DataAccess.Models;
-using QuizNet.Models;
 
 namespace QuizNet.Controllers
 {
@@ -39,28 +34,24 @@ namespace QuizNet.Controllers
         public IActionResult Create()
         {
             var newQuestion = new Question();
-            return View(newQuestion);
+            return View("QuestionForm", newQuestion);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var questionToEdit = _questionRepository.GetById(id);
+            return View("QuestionForm", questionToEdit);
         }
 
         [HttpPost]
-        public IActionResult Create(Question question)
+        public IActionResult Save(Question question)
         {
-            var newQuestionId = _questionRepository.GetAll().Last().Id + 1;
-            question.Id = newQuestionId;
+            if (question.Id != 0)
+                _questionRepository.Update(question);
+            else
+                _questionRepository.Add(question);
 
-            var lastAnswerId = _questionRepository.GetAll().LastOrDefault().
-                Answers.LastOrDefault().Id;
-
-
-            for (int i = 0; i < question.Answers.Length; i++)
-            {
-                question.Answers[i].Id = lastAnswerId + i + 1;
-                question.Answers[i].QuestionId = newQuestionId;
-            }
-
-            _questionRepository.Add(question);
-
-            return RedirectToAction("Get", new {Id = question.Id});
+            return RedirectToAction("Get", new { Id = question.Id });
         }
     }
 }

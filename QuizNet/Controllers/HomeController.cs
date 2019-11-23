@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuizNet.DataAccess.Models;
 using QuizNet.Models;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace QuizNet.Controllers
 {
@@ -30,7 +28,7 @@ namespace QuizNet.Controllers
                 LastName = "Milewski"
 
             },
-    };
+        };
 
         private readonly ILogger<HomeController> _logger;
 
@@ -39,7 +37,7 @@ namespace QuizNet.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int id=1)
+        public IActionResult Index(int id = 1)
         {
             var student = students.FirstOrDefault(s => s.Id == id);
             return View(student);

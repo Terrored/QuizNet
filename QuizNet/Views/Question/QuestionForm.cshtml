@@ -3,9 +3,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create or Edit</h1>
 
-<form method="post" asp-controller="Question" asp-action="Create">
+<form method="post" asp-controller="Question" asp-action="Save">
+    <input asp-for="Id" type="hidden" />
     Question text:
     <input class="form-control" asp-for="Text" />
 
@@ -15,29 +16,29 @@
     Answer 4# <input class="form-control" asp-for="Answers[3].Text" />
 
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="0" asp-for="CorrectAnswerIndex" id="option1"/>
+        <input class="form-check-input" type="radio" value="0" asp-for="CorrectAnswerIndex" id="option1" />
         <label class="form-check-label" for="option1">
-             Pierwsza odpowiedz jest prawidlowa
+            Pierwsza odpowiedz jest prawidlowa
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="1" asp-for="CorrectAnswerIndex"  id="option2"/>
+        <input class="form-check-input" type="radio" value="1" asp-for="CorrectAnswerIndex" id="option2" />
         <label class="form-check-label" for="option2">
-             Druga odpowiedz jest prawidlowa
+            Druga odpowiedz jest prawidlowa
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="2" asp-for="CorrectAnswerIndex"  id="option3"/>
+        <input class="form-check-input" type="radio" value="2" asp-for="CorrectAnswerIndex" id="option3" />
         <label class="form-check-label" for="option3">
-             Trzecia odpowiedz jest prawidlowa
+            Trzecia odpowiedz jest prawidlowa
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="3" asp-for="CorrectAnswerIndex"  id="option4"/>
+        <input class="form-check-input" type="radio" value="3" asp-for="CorrectAnswerIndex" id="option4" />
         <label class="form-check-label" for="option4">
             Czwarta odpowiedz jest prawidlowa
         </label>
     </div>
-    
-    <button class="btn btn-primary" type="submit">Create!</button>
+
+    <button class="btn btn-primary" type="submit">Save!</button>
 </form>

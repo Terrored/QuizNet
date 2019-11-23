@@ -4,19 +4,29 @@
 }
 
 <h1>Questions</h1>
-<br/>
+<br />
 
+<a class="btn btn-primary"
+   asp-controller="Question"
+   asp-action="Create">Add new question!</a>
+
+<hr />
 @foreach (var question in Model)
 {
     <h3>@question.Text</h3>
-    <a class="btn btn-primary" 
-       asp-controller="Question" 
-       asp-action="Get" 
+    <a class="btn btn-outline-primary"
+       asp-controller="Question"
+       asp-action="Get"
        asp-route-id="@question.Id.ToString()">Details</a>
 
-    <a class="btn btn-danger" 
-       asp-controller="Question" 
-       asp-action="Delete" 
+    <a class="btn btn-primary"
+       asp-controller="Question"
+       asp-action="Edit"
+       asp-route-id="@question.Id.ToString()">Edit</a>
+
+    <a class="btn btn-danger"
+       asp-controller="Question"
+       asp-action="Delete"
        asp-route-id="@question.Id.ToString()">Delete</a>
 
     <ul class="list-group">

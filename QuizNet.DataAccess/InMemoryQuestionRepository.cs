@@ -47,41 +47,79 @@ namespace QuizNet.DataAccess
             },
             new Question()
             {
-            Id = 2,
-            Text = "Jaki jest najlepszy język programowania?",
-            CorrectAnswerIndex = 2,
-            Answers = new Answer[]
+                Id = 2,
+                Text = "Jaki jest najlepszy język programowania?",
+                CorrectAnswerIndex = 2,
+                Answers = new Answer[]
+                {
+                    new Answer()
+                    {
+                        Id = 5,
+                        QuestionId = 2,
+                        Text = "HTML"
+
+                    },
+                    new Answer()
+                    {
+                        Id = 6,
+                        QuestionId = 2,
+                        Text = "Java"
+
+                    },
+                    new Answer()
+                    {
+                        Id = 7,
+                        QuestionId = 2,
+                        Text = "C#"
+
+                    },
+                    new Answer()
+                    {
+                        Id = 8,
+                        QuestionId = 2,
+                        Text = "JavaScript"
+
+                    },
+
+                }
+            },
+            new Question()
             {
-                new Answer()
+                Id = 3,
+                Text = "Kiedy następne zajęcia?",
+                CorrectAnswerIndex = 2,
+                Answers = new Answer[]
                 {
-                    Id = 5,
-                    QuestionId = 2,
-                    Text = "HTML"
+                    new Answer()
+                    {
+                        Id = 9,
+                        QuestionId = 3,
+                        Text = "Dziś"
 
-                },
-                new Answer()
-                {
-                    Id = 6,
-                    QuestionId = 2,
-                    Text = "Java"
+                    },
+                    new Answer()
+                    {
+                        Id = 10,
+                        QuestionId = 3,
+                        Text = "Jutro"
 
-                },
-                new Answer()
-                {
-                    Id = 7,
-                    QuestionId = 2,
-                    Text = "C#"
+                    },
+                    new Answer()
+                    {
+                        Id = 11,
+                        QuestionId = 3,
+                        Text = "Za tydzień"
 
-                },
-                new Answer()
-                {
-                    Id = 8,
-                    QuestionId = 2,
-                    Text = "JavaScript"
+                    },
+                    new Answer()
+                    {
+                        Id = 12,
+                        QuestionId = 3,
+                        Text = "Nigdy"
 
-                },
+                    },
+                }
             }
-        }
         };
 
         public IEnumerable<Question> GetAll()

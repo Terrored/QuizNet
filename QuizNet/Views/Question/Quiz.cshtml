@@ -1,0 +1,27 @@
+﻿@model List<QuizNet.DataAccess.Models.Question>
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<h1>Generated Quiz!</h1>
+<br />
+
+<a class="btn btn-primary"
+   asp-controller="Question"
+   asp-action="GenerateQuiz">Generate new Quiz!</a>
+
+<hr />
+@foreach (var question in Model)
+{
+    <h3>@question.Text</h3>
+
+    <ul class="list-group">
+        @foreach (var answer in question.Answers)
+        {
+            <li class="list-group-item">@answer.Text</li>
+        }
+    </ul>
+
+}
+
+

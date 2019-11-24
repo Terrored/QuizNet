@@ -1,12 +1,29 @@
-﻿@model QuizNet.DataAccess.Models.Student
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="jumbotron mt-5 mx-1 bg-light">
+    <div class="container">
+        <h1 class="text-center text-dark">Welcome to QuizNet!</h1>
+        <hr />
+        <p class="lead text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
 
-    <p>Id: @Model.Id</p>
-    <p>Index: @Model.Index</p>
-    <p>First name: @Model.FirstName</p>
-    <p>Last name: @Model.LastName</p>
+
+<div class="row">
+    <div class="col-sm-6 card">
+        <div class="card-body">
+            <h5 class="card-title">Create your own questions!</h5>
+            <p class="card-text">Select text, answers and correct answer! See how easy it is!</p>
+            <a asp-controller="Question" asp-action="Create" class="btn btn-primary">Create question now!</a>
+        </div>
+    </div>
+    <div class="col-sm-6 card">
+        <div class="card-body">
+            <h5 class="card-title">See already created questions!</h5>
+            <p class="card-text">Take a look at questions you have already created!</p>
+            <a asp-controller="Question" asp-action="GetAll" class="btn btn-primary">See questions!</a>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.DataAccess;
-using QuizNet.DataAccess.Models;
+using QuizNet.Models;
 
 namespace QuizNet.Controllers
 {
@@ -19,7 +19,6 @@ namespace QuizNet.Controllers
         public IActionResult GetAll()
         {
             var questions = _questionRepository.GetAll();
-            var lol = _quizService.GenerateQuiz();
             return View(questions);
         }
 
@@ -37,31 +36,39 @@ namespace QuizNet.Controllers
 
         public IActionResult Create()
         {
-            var newQuestion = new Question();
+            var newQuestion = new QuestionFormViewModel();
+
             return View("QuestionForm", newQuestion);
         }
 
         public IActionResult Edit(int id)
         {
             var questionToEdit = _questionRepository.GetById(id);
-            return View("QuestionForm", questionToEdit);
+            var viewModel = new QuestionFormViewModel(questionToEdit);
+
+            return View("QuestionForm", viewModel);
         }
 
         [HttpPost]
-        public IActionResult Save(Question question)
+        public IActionResult Save(QuestionFormViewModel viewModel)
         {
-            if (question.Id != 0)
-                _questionRepository.Update(question);
-            else
-                _questionRepository.Add(question);
+            if (!ModelState.IsValid)
+                return View("QuestionForm", viewModel);
 
-            return RedirectToAction("Get", new { Id = question.Id });
+            var questionToSave = viewModel.GetQuestion();
+
+            if (questionToSave.Id != 0)
+                _questionRepository.Update(questionToSave);
+            else
+                _questionRepository.Add(questionToSave);
+
+            return RedirectToAction("Get", new { Id = questionToSave.Id });
         }
 
         public IActionResult GenerateQuiz()
         {
             var questions = _quizService.GenerateQuiz();
-            return View("Quiz",questions);
+            return View("Quiz", questions);
         }
     }
 }

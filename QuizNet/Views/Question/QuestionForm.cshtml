@@ -1,29 +1,39 @@
-﻿@model QuizNet.DataAccess.Models.Question
+﻿@model QuestionFormViewModel
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create or Edit</h1>
+<h1>@Model.ActionType</h1>
 
 <form method="post" asp-controller="Question" asp-action="Save">
-    <input asp-for="Id" type="hidden" />
+    <input asp-for="Question.Id" type="hidden" />
     Question text:
-    <input class="form-control" asp-for="Text" />
 
-    Answer 1# <input class="form-control" asp-for="Answers[0].Text" /><br />
-    Answer 2# <input class="form-control" asp-for="Answers[1].Text" /><br />
-    Answer 3# <input class="form-control" asp-for="Answers[2].Text" /><br />
-    Answer 4# <input class="form-control" asp-for="Answers[3].Text" /><br />
+    <input class="form-control my-2" asp-for="Question.Text" />
+    <span asp-validation-for="Question.Text" class="text-danger"></span><br />
+
+    Answer 1#
+    <input class="form-control my-2" asp-for="Question.Answers[0].Text" />
+    <span asp-validation-for="Question.Answers[0].Text" class="text-danger"></span><br />
+
+    Answer 2# <input class="form-control my-2" asp-for="Question.Answers[1].Text" />
+    <span asp-validation-for="Question.Answers[1].Text" class="text-danger"></span><br />
+
+    Answer 3# <input class="form-control my-2" asp-for="Question.Answers[2].Text" />
+    <span asp-validation-for="Question.Answers[2].Text" class="text-danger"></span><br />
+
+    Answer 4# <input class="form-control my-2" asp-for="Question.Answers[3].Text" />
+    <span asp-validation-for="Question.Answers[3].Text" class="text-danger"></span><br />
 
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="0" asp-for="CorrectAnswerIndex" id="option1" />
+        <input class="form-check-input" type="radio" value="0" asp-for="Question.CorrectAnswerIndex" id="option1" />
         <label class="form-check-label" for="option1">
 
             1# is correct
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="1" asp-for="CorrectAnswerIndex" id="option2" />
+        <input class="form-check-input" type="radio" value="1" asp-for="Question.CorrectAnswerIndex" id="option2" />
         <label class="form-check-label" for="option2">
 
             2# is correct
@@ -31,7 +41,7 @@
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="2" asp-for="CorrectAnswerIndex" id="option3" />
+        <input class="form-check-input" type="radio" value="2" asp-for="Question.CorrectAnswerIndex" id="option3" />
         <label class="form-check-label" for="option3">
 
             3# is correct
@@ -39,11 +49,11 @@
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="3" asp-for="CorrectAnswerIndex" id="option4" />
+        <input class="form-check-input" type="radio" value="3" asp-for="Question.CorrectAnswerIndex" id="option4" />
         <label class="form-check-label" for="option4">
             4# is correct
         </label>
     </div>
-    <button class="btn btn-primary btn-block" type="submit">Save!</button>
+    <button class="btn btn-primary btn-block" type="submit">@Model.ActionType!</button>
 
 </form>

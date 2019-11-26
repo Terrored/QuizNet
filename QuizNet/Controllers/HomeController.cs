@@ -10,25 +10,6 @@ namespace QuizNet.Controllers
 {
     public class HomeController : Controller
     {
-        public static List<Student> students = new List<Student>()
-        {
-            new Student()
-            {
-                Id=1,
-                Index=123456,
-                FirstName = "Daniel",
-                LastName = "Wilkiewicz"
-
-            },
-            new Student()
-            {
-                Id=2,
-                Index=35453,
-                FirstName = "Krzysztof",
-                LastName = "Milewski"
-
-            },
-        };
 
         private readonly ILogger<HomeController> _logger;
 
@@ -37,14 +18,9 @@ namespace QuizNet.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int id = 1)
+        public IActionResult Index()
         {
-            var student = students.FirstOrDefault(s => s.Id == id);
-            return View(student);
-        }
 
-        public IActionResult Privacy()
-        {
             return View();
         }
 

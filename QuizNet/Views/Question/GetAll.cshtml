@@ -13,28 +13,41 @@
 <hr />
 @foreach (var question in Model)
 {
-    <h3>@question.Text</h3>
-    <a class="btn btn-outline-primary"
-       asp-controller="Question"
-       asp-action="Get"
-       asp-route-id="@question.Id.ToString()">Details</a>
+    <div class="mb-5">
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>@question.Text</h3>
+            </div>
+            <div class="col-sm-1">
+                <a class="btn btn-primary"
+                   asp-controller="Question"
+                   asp-action="Edit"
+                   asp-route-id="@question.Id.ToString()">Edit</a>
+            </div>
+            <div class="col-sm-1">
+                <a class="btn btn-primary"
+                   asp-controller="Question"
+                   asp-action="Get"
+                   asp-route-id="@question.Id.ToString()">Details</a>
+            </div>
+            <div class="col-sm-1">
+                <a class="btn btn-danger"
+                   asp-controller="Question"
+                   asp-action="Delete"
+                   asp-route-id="@question.Id.ToString()">Delete</a>
+            </div>
 
-    <a class="btn btn-primary"
-       asp-controller="Question"
-       asp-action="Edit"
-       asp-route-id="@question.Id.ToString()">Edit</a>
+        </div>
+        <br />
+        <ul class="list-group">
 
-    <a class="btn btn-danger"
-       asp-controller="Question"
-       asp-action="Delete"
-       asp-route-id="@question.Id.ToString()">Delete</a>
+            @foreach (var answer in question.Answers)
+            {
+                <li class="list-group-item">@answer.Text</li>
+            }
+        </ul>
+    </div>
 
-    <ul class="list-group">
-        @foreach (var answer in question.Answers)
-        {
-            <li class="list-group-item">@answer.Text</li>
-        }
-    </ul>
 
 }
 

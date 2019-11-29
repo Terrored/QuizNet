@@ -1,0 +1,29 @@
+﻿@model List<QuizNet.BusinessLogic.DTOs.QuestionDto>
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<h1>Generated Quiz!</h1>
+<br />
+
+<hr />
+@foreach (var question in Model)
+{
+    <div class="mb-5">
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>@question.Text</h3>
+            </div>
+        </div>
+        <br />
+        <ul class="list-group">
+
+            @foreach (var answer in question.Answers)
+            {
+                <li class="list-group-item">@answer.Text</li>
+            }
+        </ul>
+    </div>
+
+
+}

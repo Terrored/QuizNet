@@ -12,9 +12,17 @@
     <span asp-validation-for="Question.Text" class="text-danger"></span>
 
     Answer 1# <input class="form-control" asp-for="Question.Answers[0].Text" /><br />
+    <span asp-validation-for="Question.Answers[0].Text"></span>
+
     Answer 2# <input class="form-control" asp-for="Question.Answers[1].Text" /><br />
+    <span asp-validation-for="Question.Answers[1].Text"></span>
+
     Answer 3# <input class="form-control" asp-for="Question.Answers[2].Text" /><br />
+    <span asp-validation-for="Question.Answers[2].Text"></span>
+
     Answer 4# <input class="form-control" asp-for="Question.Answers[3].Text" /><br />
+    <span asp-validation-for="Question.Answers[3].Text"></span>
+
 
     <div class="form-check">
         <input class="form-check-input" type="radio" value="0" asp-for="Question.CorrectAnswerIndex" id="option1" />

@@ -43,11 +43,13 @@ namespace QuizNet.BusinessLogic
             _questionRepository.Delete(id);
         }
 
-        public void Add(QuestionDto questionDto)
+        public QuestionDto Add(QuestionDto questionDto)
         {
             var question = _mapper.Map<Question>(questionDto);
             _questionRepository.Add(question);
-            questionDto.Id = question.Id;
+
+            var createdQuestion = _mapper.Map<QuestionDto>(question);
+            return createdQuestion;
         }
     }
 }

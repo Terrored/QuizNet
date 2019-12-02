@@ -61,9 +61,13 @@ namespace QuizNet.Controllers
             var question = viewModel.Question;
 
             if (question.Id != 0)
+            {
                 _questionService.Update(question);
+            }
             else
-                _questionService.Add(question);
+            {
+                question = _questionService.Add(question);
+            }
 
             return RedirectToAction("Get", new { Id = question.Id });
         }

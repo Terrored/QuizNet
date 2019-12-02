@@ -9,6 +9,6 @@ namespace QuizNet.BusinessLogic.Interfaces
         QuestionDto GetById(int id);
         void Update(QuestionDto questionDto);
         void Delete(int id);
-        void Add(QuestionDto questionDto);
+        QuestionDto Add(QuestionDto questionDto);
     }
 }

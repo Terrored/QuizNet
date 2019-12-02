@@ -47,6 +47,7 @@ namespace QuizNet.BusinessLogic
         {
             var question = _mapper.Map<Question>(questionDto);
             _questionRepository.Add(question);
+            questionDto.Id = question.Id;
         }
     }
 }

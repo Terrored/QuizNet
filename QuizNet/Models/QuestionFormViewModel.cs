@@ -4,6 +4,10 @@ namespace QuizNet.Models
 {
     public class QuestionFormViewModel
     {
+        public QuestionFormViewModel()
+        {
+            Question = new QuestionDto();
+        }
         public QuestionDto Question { get; set; }
 
         public string ActionType

@@ -1,9 +1,29 @@
-﻿@model int
+﻿@model QuizSummaryViewModel
 @{
     ViewData["Title"] = "QuizSummary";
 }
 
-Congratulations, you had @Model answers right!
+<h2 class="text-center">
+    @Model.SummaryText You had @Model.CorrectAnswers (@Model.PercentageCorrect.ToString("#.##")%) answers right!
+</h2>
+<div class="progress">
+    <div class="progress-bar @Model.ProgressBarColor" role="progressbar" style="width: @((int)Model.PercentageCorrect)%" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<hr />
+
+@for (int i = 0; i < Model.Questions.Count; i++)
+{
+    <div class="my-5">
+        <h4>@Model.Questions[i].Text</h4>
+        <ul class="list-group">
+            @for (int j = 0; j < Model.Questions[i].Answers.Length; j++)
+            {
+                <li class="list-group-item @Model.ClassNamesForAnswer(i,j)">@Model.Questions[i].Answers[j].Text</li>
+            }
+        </ul>
+    </div>
+}
+
 
 <a asp-controller="Question" asp-action="GetAll" class="btn btn-primary">Return</a>
 

@@ -3,7 +3,6 @@ using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace QuizNet.Controllers
 {
@@ -81,8 +80,15 @@ namespace QuizNet.Controllers
         [HttpPost]
         public IActionResult CheckQuiz(QuizViewModel quizViewModel)
         {
-            var correctAnswers = _quizService.CheckQuiz(quizViewModel.Questions.Select(q => q.Id).ToArray(), quizViewModel.UserAnswersIndexes);
-            return View("QuizSummary", correctAnswers);
+            var correctAnswers = _quizService.CheckQuiz(quizViewModel.Questions, quizViewModel.UserAnswersIndexes);
+            var summaryViewModel = new QuizSummaryViewModel()
+            {
+                Questions = quizViewModel.Questions,
+                UserAnswersIndexes = quizViewModel.UserAnswersIndexes,
+                CorrectAnswers = correctAnswers
+            };
+
+            return View("QuizSummary", summaryViewModel);
         }
     }
 }

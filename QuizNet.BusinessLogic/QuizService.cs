@@ -29,5 +29,26 @@ namespace QuizNet.BusinessLogic
 
             return randomQuestionsDto;
         }
+
+        public int CheckQuiz(int[] questionIds, int[] userAnswers)
+        {
+            List<Question> questions = new List<Question>();
+            int correctAnswers = 0;
+
+            foreach (var id in questionIds)
+            {
+                questions.Add(_questionRepository.GetById(id));
+            }
+
+            for (int i = 0; i < questionIds.Length; i++)
+            {
+                if (questions[i].CorrectAnswerIndex == userAnswers[i])
+                {
+                    correctAnswers++;
+                }
+            }
+
+            return correctAnswers;
+        }
     }
 }

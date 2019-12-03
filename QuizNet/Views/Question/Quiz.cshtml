@@ -1,4 +1,4 @@
-﻿@model List<QuizNet.BusinessLogic.DTOs.QuestionDto>
+﻿@model QuizViewModel
 @{
     ViewData["Title"] = "Quiz";
 }
@@ -7,23 +7,28 @@
 <br />
 
 <hr />
-@foreach (var question in Model)
-{
-    <div class="mb-5">
-        <div class="row">
-            <div class="col-sm-9">
-                <h3>@question.Text</h3>
-            </div>
-        </div>
-        <br />
-        <ul class="list-group">
 
-            @foreach (var answer in question.Answers)
+
+<form method="post" asp-controller="Question" asp-action="CheckQuiz">
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <div class="mb-3">
+
+            @Model.Questions[i].Text
+            <input type="hidden" asp-for="Questions[i].Id" />
+            @for (int j = 0; j < Model.Questions[i].Answers.Length; j++)
             {
-                <li class="list-group-item">@answer.Text</li>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="@j" asp-for="UserAnswersIndexes[i]" id="q@(i)_a@(j)" />
+                    <label class="form-check-label" for="q@(i)_a@(j)">
+                        @Model.Questions[i].Answers[j].Text
+                    </label>
+                </div>
             }
-        </ul>
-    </div>
 
+        </div>
+        <hr />
+    }
 
-}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

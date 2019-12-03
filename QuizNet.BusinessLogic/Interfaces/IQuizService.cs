@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using QuizNet.BusinessLogic.DTOs;
-using QuizNet.DataAccess.Models;
+﻿using QuizNet.BusinessLogic.DTOs;
+using System.Collections.Generic;
 
 namespace QuizNet.BusinessLogic.Interfaces
 {
     public interface IQuizService
     {
         List<QuestionDto> GenerateQuiz();
+        int CheckQuiz(int[] questionIds, int[] userAnswers);
     }
 }

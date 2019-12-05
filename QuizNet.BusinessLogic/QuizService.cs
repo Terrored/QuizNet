@@ -23,11 +23,31 @@ namespace QuizNet.BusinessLogic
         public List<QuestionDto> GenerateQuiz()
         {
             List<Question> questions = _questionRepository.GetAll().ToList();
-            List<Question> randomQuestions = questions.OrderBy(x => Guid.NewGuid()).Take(2).ToList();
+            List<Question> randomQuestions = questions.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
 
             List<QuestionDto> randomQuestionsDto = _mapper.Map<List<QuestionDto>>(randomQuestions);
 
             return randomQuestionsDto;
+        }
+
+        public int CheckQuiz(List<QuestionDto> questions, int[] userAnswers)
+        {
+            int correctAnswers = 0;
+
+            for (int i = 0; i < questions.Count; i++)
+            {
+                questions[i] = _mapper.Map<QuestionDto>(_questionRepository.GetById(questions[i].Id));
+            }
+
+            for (int i = 0; i < questions.Count; i++)
+            {
+                if (questions[i].CorrectAnswerIndex == userAnswers[i])
+                {
+                    correctAnswers++;
+                }
+            }
+
+            return correctAnswers;
         }
     }
 }

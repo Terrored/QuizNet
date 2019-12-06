@@ -2,6 +2,7 @@
 using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -67,6 +68,7 @@ namespace QuizNet.Controllers
             }
             else
             {
+                question.CreationTime = DateTime.Now;
                 question = _questionService.Add(question);
             }
 

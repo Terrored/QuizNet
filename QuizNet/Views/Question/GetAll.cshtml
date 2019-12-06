@@ -5,17 +5,18 @@
 
 <h1>Questions</h1>
 <br />
-
-<a class="btn btn-primary"
-   asp-controller="Question"
-   asp-action="Create">Add new question!</a>
-<div class="btn-group dropright">
-    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Generate quiz</button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" asp-controller="Question"
-           asp-action="GenerateQuiz" asp-route-quizType="@("random")">Random quiz</a>
-        <a class="dropdown-item" asp-controller="Question"
-           asp-action="GenerateQuiz" asp-route-quizType="@("recent")">Recently added questions quiz</a>
+<div class="mb-4">
+    <a class="btn btn-primary"
+       asp-controller="Question"
+       asp-action="Create">Add new question!</a>
+    <div class="btn-group dropright">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Generate quiz</button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-controller="Question"
+               asp-action="GenerateQuiz" asp-route-quizType="@("random")">Random quiz</a>
+            <a class="dropdown-item" asp-controller="Question"
+               asp-action="GenerateQuiz" asp-route-quizType="@("recent")">Recently added questions quiz</a>
+        </div>
     </div>
 </div>
 

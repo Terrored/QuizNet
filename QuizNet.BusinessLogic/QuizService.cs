@@ -20,7 +20,7 @@ namespace QuizNet.BusinessLogic
             _questionRepository = questionRepository;
             _mapper = mapper;
         }
-        public List<QuestionDto> GenerateQuiz()
+        public List<QuestionDto> GenerateRandomQuiz()
         {
             List<Question> questions = _questionRepository.GetAll().ToList();
             List<Question> randomQuestions = questions.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
@@ -48,6 +48,16 @@ namespace QuizNet.BusinessLogic
             }
 
             return correctAnswers;
+        }
+
+        public List<QuestionDto> GenerateRecentlyAddedQuestionsQuiz()
+        {
+            var questions = _questionRepository.GetAll().ToList();
+            var randomQuestions = questions.OrderByDescending(x => x.CreationTime).Take(3).ToList();
+
+            var randomQuestionsDto = _mapper.Map<List<QuestionDto>>(randomQuestions);
+
+            return randomQuestionsDto;
         }
     }
 }

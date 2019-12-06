@@ -6,7 +6,8 @@ namespace QuizNet.BusinessLogic.Interfaces
 {
     public interface IQuizService
     {
-        List<QuestionDto> GenerateQuiz();
+        List<QuestionDto> GenerateRandomQuiz();
+        List<QuestionDto> GenerateRecentlyAddedQuestionsQuiz();
         int CheckQuiz(List<QuestionDto> questions, int[] userAnswers);
     }
 }

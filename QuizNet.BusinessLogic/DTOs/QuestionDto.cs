@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuizNet.BusinessLogic.DTOs
 {
@@ -11,5 +12,6 @@ namespace QuizNet.BusinessLogic.DTOs
         public string Text { get; set; }
         public AnswerDto[] Answers { get; set; }
         public int CorrectAnswerIndex { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

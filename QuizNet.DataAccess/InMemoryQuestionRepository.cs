@@ -1,4 +1,5 @@
 ﻿using QuizNet.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,7 +44,8 @@ namespace QuizNet.DataAccess
                         Text = "password"
 
                     },
-                }
+                },
+                CreationTime=new DateTime(2019,10,9,21,23,32)
             },
             new Question()
             {
@@ -80,7 +82,8 @@ namespace QuizNet.DataAccess
                         Text = "JavaScript"
 
                     },
-                }
+                },
+                CreationTime=new DateTime(2019,10,9,21,29,11)
             },
             new Question()
             {
@@ -113,7 +116,8 @@ namespace QuizNet.DataAccess
                         QuestionId = 3,
                         Text = "GET"
                     },
-                }
+                },
+                CreationTime=new DateTime(2019,10,10,11,5,56)
             },
             new Question()
             {
@@ -146,7 +150,8 @@ namespace QuizNet.DataAccess
                         QuestionId = 4,
                         Text = "Wszystkie wymienione"
                     },
-                }
+                },
+                CreationTime=new DateTime(2019,10,10,12,00,15)
             },
             new Question()
             {
@@ -179,7 +184,8 @@ namespace QuizNet.DataAccess
                         QuestionId = 5,
                         Text = "Tworzy instancje obiektów zainicjalizowane w kontenerze DI"
                     },
-                }
+                },
+                CreationTime=new DateTime(2019,10,11,15,41,2)
             }
         };
 

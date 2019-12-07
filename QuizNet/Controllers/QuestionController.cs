@@ -2,8 +2,10 @@
 using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using QuizNet.Helpers;
 
 namespace QuizNet.Controllers
 {
@@ -73,10 +75,25 @@ namespace QuizNet.Controllers
             return RedirectToAction("Get", new { Id = question.Id });
         }
 
-        public IActionResult GenerateQuiz()
+        [Route("{controller}/{action}/{quizType}")]
+        public IActionResult GenerateQuiz(string quizType)
         {
-            List<QuestionDto> quiz = _quizService.GenerateQuiz();
-            var quizViewModel = new QuizViewModel(quiz);
+            List<QuestionDto> quiz = new List<QuestionDto>();
+
+            if (quizType == QuizType.Recent)
+            {
+                quiz = _quizService.GenerateRecentlyAddedQuestionsQuiz();
+            }
+            else if (quizType == QuizType.Random)
+            {
+                quiz = _quizService.GenerateRandomQuiz();
+            }
+            else
+            {
+                return RedirectToAction("GetAll");
+            }
+
+            var quizViewModel = new QuizViewModel(quiz, quizType);
             return View("Quiz", quizViewModel);
         }
 

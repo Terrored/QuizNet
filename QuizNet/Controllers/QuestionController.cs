@@ -5,6 +5,7 @@ using QuizNet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using QuizNet.Helpers;
 
 namespace QuizNet.Controllers
 {
@@ -68,7 +69,6 @@ namespace QuizNet.Controllers
             }
             else
             {
-                question.CreationTime = DateTime.Now;
                 question = _questionService.Add(question);
             }
 
@@ -80,11 +80,11 @@ namespace QuizNet.Controllers
         {
             List<QuestionDto> quiz = new List<QuestionDto>();
 
-            if (quizType == "recent")
+            if (quizType == QuizType.Recent)
             {
                 quiz = _quizService.GenerateRecentlyAddedQuestionsQuiz();
             }
-            else if (quizType == "random")
+            else if (quizType == QuizType.Random)
             {
                 quiz = _quizService.GenerateRandomQuiz();
             }

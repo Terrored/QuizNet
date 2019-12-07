@@ -53,11 +53,11 @@ namespace QuizNet.BusinessLogic
         public List<QuestionDto> GenerateRecentlyAddedQuestionsQuiz()
         {
             var questions = _questionRepository.GetAll().ToList();
-            var randomQuestions = questions.OrderByDescending(x => x.CreationTime).Take(3).ToList();
+            var recentQuestions = questions.OrderByDescending(x => x.CreationTime).Take(3).ToList();
 
-            var randomQuestionsDto = _mapper.Map<List<QuestionDto>>(randomQuestions);
+            var recentQuestionsDto = _mapper.Map<List<QuestionDto>>(recentQuestions);
 
-            return randomQuestionsDto;
+            return recentQuestionsDto;
         }
     }
 }

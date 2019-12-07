@@ -4,6 +4,7 @@ using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.DataAccess;
 using QuizNet.DataAccess.Models;
 using System.Collections.Generic;
+using System;
 
 namespace QuizNet.BusinessLogic
 {
@@ -46,6 +47,7 @@ namespace QuizNet.BusinessLogic
         public QuestionDto Add(QuestionDto questionDto)
         {
             var question = _mapper.Map<Question>(questionDto);
+            question.CreationTime = DateTime.Now;
             _questionRepository.Add(question);
 
             var createdQuestion = _mapper.Map<QuestionDto>(question);

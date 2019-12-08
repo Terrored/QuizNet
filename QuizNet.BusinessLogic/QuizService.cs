@@ -41,7 +41,7 @@ namespace QuizNet.BusinessLogic
 
             for (int i = 0; i < questions.Count; i++)
             {
-                if (questions[i].CorrectAnswerIndex == userAnswers[i])
+                if (questions[i].CorrectAnswerId == userAnswers[i])
                 {
                     correctAnswers++;
                 }

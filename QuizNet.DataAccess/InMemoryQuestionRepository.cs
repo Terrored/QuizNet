@@ -13,7 +13,7 @@ namespace QuizNet.DataAccess
             {
                 Id = 1,
                 Text = "Jakie jest hasło admina?",
-                CorrectAnswerIndex = 1,
+                CorrectAnswerId = 2,
                 Answers = new Answer[]
                 {
                     new Answer()
@@ -51,7 +51,7 @@ namespace QuizNet.DataAccess
             {
                 Id = 2,
                 Text = "Jaki jest najlepszy język programowania?",
-                CorrectAnswerIndex = 2,
+                CorrectAnswerId = 7,
                 Answers = new Answer[]
                 {
                     new Answer()
@@ -89,7 +89,7 @@ namespace QuizNet.DataAccess
             {
                 Id = 3,
                 Text = "Jakiej metody HTTP używamy aby pobrać dane z serwera?",
-                CorrectAnswerIndex = 3,
+                CorrectAnswerId = 12,
                 Answers = new Answer[]
                 {
                     new Answer()
@@ -123,7 +123,7 @@ namespace QuizNet.DataAccess
             {
                 Id = 4,
                 Text = "Na jakim systemie operacyjnym możemy uruchomić aplikację napisaną w .NET Core?",
-                CorrectAnswerIndex = 3,
+                CorrectAnswerId = 16,
                 Answers = new Answer[]
                 {
                     new Answer()
@@ -157,7 +157,7 @@ namespace QuizNet.DataAccess
             {
                 Id = 5,
                 Text = "Które zdanie najlepiej opisuje kontroler?",
-                CorrectAnswerIndex = 2,
+                CorrectAnswerId = 19,
                 Answers = new Answer[]
                 {
                     new Answer()
@@ -221,7 +221,7 @@ namespace QuizNet.DataAccess
         {
             var questionToEdit = _questions.FirstOrDefault(q => q.Id == updatedQuestion.Id);
             questionToEdit.Text = updatedQuestion.Text;
-            questionToEdit.CorrectAnswerIndex = updatedQuestion.CorrectAnswerIndex;
+            questionToEdit.CorrectAnswerId = updatedQuestion.CorrectAnswerId;
 
             for (int i = 0; i < updatedQuestion.Answers.Length; i++)
             {

@@ -19,7 +19,7 @@
             @for (int j = 0; j < Model.Questions[i].Answers.Length; j++)
             {
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" value="@j" asp-for="UserAnswersIndexes[i]" id="q@(i)_a@(j)"/>
+                    <input class="form-check-input" type="radio" value="@j" asp-for="UserAnswerIds[i]" id="q@(i)_a@(j)"/>
                     <label class="form-check-label" for="q@(i)_a@(j)">
                         @Model.Questions[i].Answers[j].Text
                     </label>

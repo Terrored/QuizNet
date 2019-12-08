@@ -10,6 +10,7 @@ namespace QuizNet.Models
         }
         public QuestionDto Question { get; set; }
 
+
         public string ActionType
         {
             get

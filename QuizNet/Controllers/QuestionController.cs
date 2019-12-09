@@ -100,12 +100,12 @@ namespace QuizNet.Controllers
         [HttpPost]
         public IActionResult CheckQuiz(QuizViewModel quizViewModel)
         {
-            var correctAnswers = _quizService.CheckQuiz(quizViewModel.Questions, quizViewModel.UserAnswersIndexes);
+            var correctAnswers = _quizService.CheckQuiz(quizViewModel.Questions, quizViewModel.UserAnswerIds);
 
             var summaryViewModel = new QuizSummaryViewModel()
             {
                 Questions = quizViewModel.Questions,
-                UserAnswersIndexes = quizViewModel.UserAnswersIndexes,
+                UserAnswerIds = quizViewModel.UserAnswerIds,
                 CorrectAnswers = correctAnswers
             };
 

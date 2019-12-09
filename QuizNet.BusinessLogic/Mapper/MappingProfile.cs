@@ -12,7 +12,7 @@ namespace QuizNet.BusinessLogic.Mapper
             CreateMap<Question, QuestionDto>();
 
             CreateMap<AnswerDto, Answer>();
-            CreateMap<QuestionDto, Question>();
+            CreateMap<QuestionDto, Question>().ForMember(q => q.CorrectAnswerId, opt => opt.Ignore());
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
+﻿using QuizNet.BusinessLogic.DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using QuizNet.BusinessLogic.DTOs;
 
 namespace QuizNet.Models
 {
@@ -46,7 +43,7 @@ namespace QuizNet.Models
 
         public string ClassNamesForAnswer(int questionIndex, int answerIndex)
         {
-            if (Questions[questionIndex].CorrectAnswerIndex == answerIndex)
+            if (Questions[questionIndex].CorrectAnswerId == answerIndex)
             {
                 return "list-group-item-success";
             }

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
+using QuizNet.Helpers;
 using QuizNet.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using QuizNet.Helpers;
 
 namespace QuizNet.Controllers
 {
@@ -47,10 +46,7 @@ namespace QuizNet.Controllers
         public IActionResult Edit(int id)
         {
             var questionToEdit = _questionService.GetById(id);
-            var questionViewModel = new QuestionFormViewModel()
-            {
-                Question = questionToEdit
-            };
+            var questionViewModel = new QuestionFormViewModel();
 
             return View("QuestionForm", questionViewModel);
         }
@@ -61,18 +57,27 @@ namespace QuizNet.Controllers
             if (!ModelState.IsValid)
                 return View("QuestionForm", viewModel);
 
-            var question = viewModel.Question;
+            var answers = viewModel.Answers.Select(a => new AnswerDto() { Text = a }).ToArray();
 
-            if (question.Id != 0)
+            var questionDto = new QuestionDto()
             {
-                _questionService.Update(question);
+                Answers = answers,
+                Text = viewModel.QuestionText,
+                CorrectAnswer = answers[viewModel.CorrectAnswerIndex],
+                Id = viewModel.QuestionId
+
+            };
+
+            if (questionDto.Id != 0)
+            {
+                _questionService.Update(questionDto);
             }
             else
             {
-                question = _questionService.Add(question);
+                questionDto = _questionService.Add(questionDto);
             }
 
-            return RedirectToAction("Get", new { Id = question.Id });
+            return RedirectToAction("Get", new { Id = questionDto.Id });
         }
 
         [Route("{controller}/{action}/{quizType}")]

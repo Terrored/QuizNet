@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +26,9 @@ namespace QuizNet
         {
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddScoped<IQuestionRepository, InMemoryQuestionRepository>();
+            services.AddDbContext<EFDbContext>(options => options.UseSqlServer("server=(localdb)\\mssqllocaldb; database=QuizNet; Trusted_Connection=True; MultipleActiveResultSets=true"));
+
+            services.AddScoped<IQuestionRepository, EFQuestionRepository>();
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddControllersWithViews();

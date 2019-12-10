@@ -22,37 +22,6 @@
 
     Answer 4# <input class="form-control" asp-for="Question.Answers[3].Text" /><br />
     <span asp-validation-for="Question.Answers[3].Text"></span>
-    @*TODO:Radio button do naprawienia. Ustawienie wspólnego name powoduje, że checbox działa jak należy ale nie potrafi zbindować wartości.
-        Rozwiązanie jakie znalazłem to niestety stwrzoenie oddzielnego pola dla każdej wartości w stylu bool isAnswer0Correct itp*@
-    @*<div class="custom-control custom-checkbox">
-            <input class="form-check-input" type="checkbox" value="true" asp-for="Question.Answers[0].IsCorrect" id="option1" />
-            <label class="form-check-label" for="option1">
-
-                1# is correct
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" value="true" asp-for="Question.Answers[1].IsCorrect" id="option2" />
-            <label class="form-check-label" for="option2">
-
-                2# is correct
-
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" value="true" asp-for="Question.Answers[2].IsCorrect" id="option3" />
-            <label class="form-check-label" for="option3">
-
-                3# is correct
-
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" value="true" asp-for="Question.Answers[3].IsCorrect" id="option4" />
-            <label class="form-check-label" for="option4">
-                4# is correct
-            </label>
-        </div>*@
 
     <select class="custom-select" asp-for="CorrectAnswerIndex">
         <option value="0" selected>#1</option>

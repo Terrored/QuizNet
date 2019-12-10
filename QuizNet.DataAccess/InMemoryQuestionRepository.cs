@@ -1,13 +1,5 @@
-﻿using QuizNet.DataAccess.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace QuizNet.DataAccess
+﻿namespace QuizNet.DataAccess
 {
-    //TODO: Zmodyfikowac klasę? Czy po prostu wyjebać? Pytanie co jeśli dodamy obiekty z id.
-    //TODO: Przygotować skrypt bazodanowy na wypełnienie pytań.
-    //Będzie trzeba wtedy modyfikować nasze piękne metody? Pewnie troche tak a boje sie że nawet bardzo. Jeśli bardzo to wtedy olac.
     public class InMemoryQuestionRepository { }
     //{
     //    private static readonly List<Question> _questions = new List<Question>()

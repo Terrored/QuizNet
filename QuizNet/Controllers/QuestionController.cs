@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
-using QuizNet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using QuizNet.Helpers;
+using QuizNet.Models;
+using System.Collections.Generic;
 
 namespace QuizNet.Controllers
 {
@@ -47,10 +45,7 @@ namespace QuizNet.Controllers
         public IActionResult Edit(int id)
         {
             var questionToEdit = _questionService.GetById(id);
-            var questionViewModel = new QuestionFormViewModel()
-            {
-                Question = questionToEdit
-            };
+            var questionViewModel = new QuestionFormViewModel(questionToEdit);
 
             return View("QuestionForm", questionViewModel);
         }
@@ -62,6 +57,7 @@ namespace QuizNet.Controllers
                 return View("QuestionForm", viewModel);
 
             var question = viewModel.Question;
+            question.Answers[viewModel.CorrectAnswerIndex].IsCorrect = true;
 
             if (question.Id != 0)
             {

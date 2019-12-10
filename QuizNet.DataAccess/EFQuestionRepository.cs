@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using QuizNet.DataAccess.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using QuizNet.DataAccess.Models;
 
 namespace QuizNet.DataAccess
 {
@@ -31,18 +29,27 @@ namespace QuizNet.DataAccess
 
         public IEnumerable<Question> GetAll()
         {
-            return _dbContext.Questions.Include(a=> a.Answers).AsEnumerable();
+            return _dbContext.Questions.Include(a => a.Answers).AsEnumerable();
         }
 
         public Question GetById(int id)
         {
-            return _dbContext.Questions.Include(a=> a.Answers).SingleOrDefault(q => q.Id == id);
+            return _dbContext.Questions.Include(a => a.Answers).SingleOrDefault(q => q.Id == id);
         }
 
         public void Update(Question updatedQuestion)
         {
+            var questionToUpdate = _dbContext.Questions.Include(q => q.Answers).SingleOrDefault(q => q.Id == updatedQuestion.Id);
 
-            throw new NotImplementedException();
+            questionToUpdate.Text = updatedQuestion.Text;
+
+            for (int i = 0; i < questionToUpdate.Answers.Count; i++)
+            {
+                questionToUpdate.Answers[i].IsCorrect = updatedQuestion.Answers[i].IsCorrect;
+                questionToUpdate.Answers[i].Text = updatedQuestion.Answers[i].Text;
+            }
+
+            _dbContext.SaveChanges();
         }
     }
 }

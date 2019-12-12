@@ -23,36 +23,12 @@
     Answer 4# <input class="form-control" asp-for="Question.Answers[3].Text" /><br />
     <span asp-validation-for="Question.Answers[3].Text"></span>
 
-
-    <div class="form-check">
-        <input class="form-check-input" type="radio" value="0" asp-for="Question.CorrectAnswerIndex" id="option1" />
-        <label class="form-check-label" for="option1">
-
-            1# is correct
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" value="1" asp-for="Question.CorrectAnswerIndex" id="option2" />
-        <label class="form-check-label" for="option2">
-
-            2# is correct
-
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" value="2" asp-for="Question.CorrectAnswerIndex" id="option3" />
-        <label class="form-check-label" for="option3">
-
-            3# is correct
-
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" value="3" asp-for="Question.CorrectAnswerIndex" id="option4" />
-        <label class="form-check-label" for="option4">
-            4# is correct
-        </label>
-    </div>
+    <select class="custom-select" asp-for="CorrectAnswerIndex">
+        <option value="0" selected> 1#</option>
+        <option value="1"> 2#</option>
+        <option value="2"> 3#</option>
+        <option value="3"> 4#</option>
+    </select>
     <button class="btn btn-primary btn-block" type="submit">@Model.ActionType</button>
 
 </form>

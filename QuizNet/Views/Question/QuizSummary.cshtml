@@ -19,7 +19,7 @@
         <ul class="list-group">
             @for (int j = 0; j < Model.Questions[i].Answers.Length; j++)
             {
-                <li class="list-group-item @Model.ClassNamesForAnswer(i,j)">@Model.Questions[i].Answers[j].Text</li>
+                <li class="list-group-item @Model.ClassNamesForAnswer(@Model.Questions[i].Answers[j],i)">@Model.Questions[i].Answers[j].Text</li>
             }
         </ul>
 

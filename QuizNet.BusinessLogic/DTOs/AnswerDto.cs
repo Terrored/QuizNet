@@ -11,5 +11,6 @@ namespace QuizNet.BusinessLogic.DTOs
         [Required]
         public string Text { get; set; }
         public int QuestionId { get; set; }
+        public bool IsCorrect { get; set; }
     }
 }

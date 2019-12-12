@@ -11,7 +11,6 @@ namespace QuizNet.BusinessLogic.DTOs
         [StringLength(300)]
         public string Text { get; set; }
         public AnswerDto[] Answers { get; set; }
-        public int CorrectAnswerIndex { get; set; }
         public DateTime CreationTime { get; set; }
     }
 }

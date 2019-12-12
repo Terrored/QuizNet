@@ -9,7 +9,7 @@ namespace QuizNet.Models
     public class QuizSummaryViewModel
     {
         public List<QuestionDto> Questions { get; set; }
-        public int[] UserAnswersIndexes { get; set; }
+        public int[] UserAnswerIds { get; set; }
         public int CorrectAnswers { get; set; }
         public double PercentageCorrect => 100 * (double)CorrectAnswers / Questions.Count;
 
@@ -44,20 +44,18 @@ namespace QuizNet.Models
             }
         }
 
-        public string ClassNamesForAnswer(int questionIndex, int answerIndex)
+        public string ClassNamesForAnswer(AnswerDto answer , int userAnswerIndex)
         {
-            if (Questions[questionIndex].CorrectAnswerIndex == answerIndex)
+            if (answer.IsCorrect)
             {
                 return "list-group-item-success";
             }
-            else if (UserAnswersIndexes[questionIndex] == answerIndex)
+            else if (UserAnswerIds[userAnswerIndex] == answer.Id)
             {
                 return "list-group-item-danger";
             }
-            else
-            {
-                return "";
-            }
+
+            return "";
         }
     }
 }

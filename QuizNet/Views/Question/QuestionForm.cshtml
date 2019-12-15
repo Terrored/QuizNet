@@ -11,24 +11,56 @@
     <input class="form-control" asp-for="Question.Text" />
     <span asp-validation-for="Question.Text" class="text-danger"></span>
 
-    Answer 1# <input class="form-control" asp-for="Question.Answers[0].Text" /><br />
+    Answer 1# <input class="form-control" asp-for="Question.Answers[0].Text" id="answer0" /><br />
     <span asp-validation-for="Question.Answers[0].Text"></span>
 
-    Answer 2# <input class="form-control" asp-for="Question.Answers[1].Text" /><br />
+    Answer 2# <input class="form-control" asp-for="Question.Answers[1].Text" id="answer1" /><br />
     <span asp-validation-for="Question.Answers[1].Text"></span>
 
-    Answer 3# <input class="form-control" asp-for="Question.Answers[2].Text" /><br />
+    Answer 3# <input class="form-control" asp-for="Question.Answers[2].Text" id="answer2" /><br />
     <span asp-validation-for="Question.Answers[2].Text"></span>
 
-    Answer 4# <input class="form-control" asp-for="Question.Answers[3].Text" /><br />
+    Answer 4# <input class="form-control" asp-for="Question.Answers[3].Text" id="answer3" /><br />
     <span asp-validation-for="Question.Answers[3].Text"></span>
 
     <select class="custom-select" asp-for="CorrectAnswerIndex">
-        <option value="0" selected> 1#</option>
-        <option value="1"> 2#</option>
-        <option value="2"> 3#</option>
-        <option value="3"> 4#</option>
+        <option id="0" value="0" selected> 1#</option>
+        <option id="1" value="1"> 2#</option>
+        <option id="2" value="2"> 3#</option>
+        <option id="3" value="3"> 4#</option>
     </select>
     <button class="btn btn-primary btn-block" type="submit">@Model.ActionType</button>
 
 </form>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#answer0").on("input", function (event) {
+                let enteredText = event.target.value;
+
+                $("#0").html(enteredText);
+            });
+
+            $("#answer1").on("input", function (event) {
+                let enteredText = event.target.value;
+
+                $("#1").html(enteredText);
+            });
+
+            $("#answer2").on("input", function (event) {
+                let enteredText = event.target.value;
+
+                $("#2").html(enteredText);
+            });
+
+            $("#answer3").on("input", function (event) {
+                let enteredText = event.target.value;
+
+                $("#3").html(enteredText);
+            });
+        });
+    </script>
+
+}

@@ -3,8 +3,9 @@ using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
 using QuizNet.DataAccess;
 using QuizNet.DataAccess.Models;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QuizNet.BusinessLogic
 {
@@ -52,6 +53,22 @@ namespace QuizNet.BusinessLogic
 
             var createdQuestion = _mapper.Map<QuestionDto>(question);
             return createdQuestion;
+        }
+
+        public QuestionMetadataDto GetMetadata()
+        {
+            var questionCount = _questionRepository.GetAll().Count();
+            var newestQuestion = _questionRepository.GetAll().Max(q => q.CreationTime);
+            var oldestQuestion = _questionRepository.GetAll().Min(q => q.CreationTime);
+
+            var metadata = new QuestionMetadataDto()
+            {
+                QuestionCount = questionCount,
+                OldestQuestion = oldestQuestion,
+                NewestQuestion = newestQuestion
+            };
+
+            return metadata;
         }
     }
 }

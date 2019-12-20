@@ -11,7 +11,7 @@
     <input class="form-control" asp-for="Question.Text" />
     <span asp-validation-for="Question.Text" class="text-danger"></span>
 
-    Answer 1# <input class="form-control" asp-for="Question.Answers[0].Text" /><br />
+    Answer 1# <input class="form-control" asp-for="Question.Answers[0].Text" id="answer0"/><br />
     <span asp-validation-for="Question.Answers[0].Text"></span>
 
     Answer 2# <input class="form-control" asp-for="Question.Answers[1].Text" /><br />
@@ -24,7 +24,7 @@
     <span asp-validation-for="Question.Answers[3].Text"></span>
 
     <select class="custom-select" asp-for="CorrectAnswerIndex">
-        <option value="0" selected> 1#</option>
+        <option value="0"  id="0"selected> 1#</option>
         <option value="1"> 2#</option>
         <option value="2"> 3#</option>
         <option value="3"> 4#</option>
@@ -32,3 +32,19 @@
     <button class="btn btn-primary btn-block" type="submit">@Model.ActionType</button>
 
 </form>
+
+@section Scripts{ 
+    
+    <script>
+        $(document).ready(function() {
+            $("#answer0").on("input",
+                function(event) {
+                    var enteredText = event.target.value;
+
+                    $("#0").html(enteredText);
+                });
+        });
+    </script>
+
+    
+}

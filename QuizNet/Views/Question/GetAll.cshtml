@@ -16,6 +16,34 @@
                asp-action="GenerateQuiz" asp-route-quizType="@("random")">Random quiz</a>
             <a class="dropdown-item" asp-controller="Question"
                asp-action="GenerateQuiz" asp-route-quizType="@("recent")">Recently added questions quiz</a>
+            
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#questionMetadata">
+        Show info
+    </button>
+</div>
+
+<div class="modal fade" id="questionMetadata" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="questionInfo">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
         </div>
     </div>
 </div>
@@ -57,9 +85,32 @@
             }
         </ul>
     </div>
-
-
 }
 
+@section Scripts{ 
+    <script>
 
+        $(document).ready(function() {
+            $("#questionMetadata").on("shown.bs.modal",
+                function(e) {
+                    $.ajax({
+                        url: "/api/questionsmetadata",
+                        method: "GET",
+                        success: function(data) {
+                            $("#questionInfo").html("Currently there are " +
+                                data.questionsCount +
+                                " questions in the database. First question has been added on " +
+                                data.oldestQuestion.toLocaleString() +
+                                ". Newest question has been added on " +
+                                data.newestQuestion);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                });
+        });
+
+    </script>
+}
 

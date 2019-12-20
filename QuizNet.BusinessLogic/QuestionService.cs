@@ -5,6 +5,7 @@ using QuizNet.DataAccess;
 using QuizNet.DataAccess.Models;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace QuizNet.BusinessLogic
 {
@@ -52,6 +53,23 @@ namespace QuizNet.BusinessLogic
 
             var createdQuestion = _mapper.Map<QuestionDto>(question);
             return createdQuestion;
+        }
+
+        public QuestionsMetadataDto GetMetadata()
+        {
+            List<Question> allQuestions = _questionRepository.GetAll().ToList();
+            int questionsCount = allQuestions.Count();
+            DateTime oldestQuestionDate = allQuestions.Min(x => x.CreationTime).Date;
+            DateTime newestQuestionDate = allQuestions.Max(x => x.CreationTime).Date;
+
+            QuestionsMetadataDto metadata = new QuestionsMetadataDto()
+            {
+                NewestQuestion = newestQuestionDate,
+                OldestQuestion = oldestQuestionDate,
+                QuestionsCount = questionsCount
+            };
+
+            return metadata;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace QuizNet.BusinessLogic.Interfaces
         void Update(QuestionDto questionDto);
         void Delete(int id);
         QuestionDto Add(QuestionDto questionDto);
+        QuestionsMetadataDto GetMetadata();
     }
 }

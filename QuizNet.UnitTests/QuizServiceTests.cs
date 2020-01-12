@@ -19,14 +19,12 @@ namespace QuizNet.UnitTests
     {
         private IMapper _mapper;
         private Mock<IQuestionRepository> _questionRepositoryMock;
-        private Mock<IMapper> _mapperMock;
 
 
         [SetUp]
         public void SetUp()
         {
             _questionRepositoryMock = new Mock<IQuestionRepository>();
-            _mapperMock = new Mock<IMapper>();
             _mapper = new AutoMapper.Mapper(new MapperConfiguration(cfg => cfg.AddProfile(typeof(MappingProfile))));
         }
 
@@ -85,9 +83,6 @@ namespace QuizNet.UnitTests
         [Test]
         public void Check_Quiz()
         {
-            //new Answer { Id = 1, IsCorrect = true, QuestionId = 1, Text = "s" },
-            //new Answer { Id = 2, IsCorrect = false, QuestionId = 1, Text = "s2" }
-
             //Arrange
             List<QuestionDto> questionDtoList = new List<QuestionDto>()
             {

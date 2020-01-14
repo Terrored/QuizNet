@@ -26,7 +26,7 @@ namespace QuizNet
         {
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddDbContext<EFDbContext>(options => 
+            services.AddDbContext<EFDbContext>(options =>
                 options.UseSqlServer("server=(localdb)\\mssqllocaldb; database=QuizNet; Trusted_Connection=True; MultipleActiveResultSets=true"));
 
             services.AddScoped<IQuestionRepository, EFQuestionRepository>();

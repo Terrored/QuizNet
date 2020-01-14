@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizNet.BusinessLogic.DTOs;
 using QuizNet.BusinessLogic.Interfaces;
-using QuizNet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using QuizNet.Helpers;
+using QuizNet.Models;
+using System.Collections.Generic;
 
 namespace QuizNet.Controllers
 {
@@ -20,6 +18,7 @@ namespace QuizNet.Controllers
             _quizService = quizService;
         }
 
+        [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Client)]
         public IActionResult GetAll()
         {
             var questions = _questionService.GetAll();
@@ -48,7 +47,7 @@ namespace QuizNet.Controllers
         {
             var questionToEdit = _questionService.GetById(id);
             var questionViewModel = new QuestionFormViewModel(questionToEdit);
-            
+
 
             return View("QuestionForm", questionViewModel);
         }

@@ -25,28 +25,30 @@ namespace QuizNet.Controllers
             return View();
         }
 
-        public IActionResult CacheTest()
+        // SPOSÓB 1
+        public IActionResult Cache1()
         {
-            //  SPOSÓB 1
+            if (!_cache.TryGetValue("Current time", out DateTime result))
+            {
+                result = DateTime.Now;
 
-            //if (!_cache.TryGetValue("Current time", out DateTime result))
-            //{
-            //    result = DateTime.Now;
+                _cache.Set("Current time", result, TimeSpan.FromSeconds(4));
+            }
 
-            //    _cache.Set("Current time", result);
-            //}
-            //return Content(result.ToString());
+            return View("Cache", result);
+        }
 
-
-
-            // SPOSÓB 2
+        // SPOSÓB 2
+        public IActionResult Cache2()
+        {
             var cacheItem = _cache.GetOrCreate("Current time", entry =>
             {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
                 entry.SlidingExpiration = TimeSpan.FromSeconds(3);
                 return DateTime.Now;
             });
-            return Content(cacheItem.ToString());
+
+            return View("Cache", cacheItem);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

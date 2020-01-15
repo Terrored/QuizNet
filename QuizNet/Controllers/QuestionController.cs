@@ -20,6 +20,7 @@ namespace QuizNet.Controllers
             _quizService = quizService;
         }
 
+        [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Client)]
         public IActionResult GetAll()
         {
             var questions = _questionService.GetAll();
